@@ -3,6 +3,19 @@ using MiniBank.Models;
 using MiniBank.Service.Interfaces;
 using System.Data;
 
+//TODO 1.შექმენით Account - ების ცხრილი მოცემული კლასის მაგალითზე.
+//TODO 2.დაუკავშირეთ ცხრილი Customer - ების ცხრილს.
+//TODO 3.შეასრულეთ მოქმედებები პროცედურების გამოყენებით:
+//  GetAccounts - ყველა ანგარიშის წამოღება,
+//  GetAccountsOfCustomer - ყველა ანგარიშის წამოღება CustomerId - ის გამოყენებით,
+//  GetAccount - კონკრეტული ანგარიშის აღება Account - ის id ის გამოყენებით,
+//  Create - ანგარიში შექმნა,
+//  Update - ანგარიშის განხლება,
+//  Delete - ანგარიშისს წაშლა
+//TODO 4. დააკავშირეთ აპლიკაციას თქვები ბაზა და პროცედურები გამოიძახეთ შესაბამის ფუნქციებში.
+//TODO 5. გატესტეთ მუშაობს თუ არა თქვენი აპლიკაცია.
+//!!!!!!!!!!!!!!ეს ყველაფერი დაწეროთ ისე რომ არსად ჩაიხედოთ!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 namespace MiniBank.Service.Implementations
 {
     public class DbService : IDbService
