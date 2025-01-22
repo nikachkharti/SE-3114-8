@@ -162,3 +162,25 @@ GO
 --	DELETE FROM Accounts
 --	WHERE Id = @accountId
 --END
+
+--CREATE PROCEDURE spGetOperationsOfAccount
+--@accountId INT
+--AS
+--BEGIN
+--	SELECT*
+--	FROM Operations
+--	WHERE AccountId = @accountId
+--END
+
+
+--CREATE PROCEDURE spCreateOperation
+--@operationType TINYINT,
+--@currency CHAR(3),
+--@amount MONEY,
+--@happendAt DATETIME,
+--@accountId INT
+--AS
+--BEGIN
+--	INSERT INTO Operations (OperationType,Currency,Amount,HappendAt,AccountId)
+--	VALUES(@operationType,@currency,@amount,@happendAt,@accountId)
+--END
