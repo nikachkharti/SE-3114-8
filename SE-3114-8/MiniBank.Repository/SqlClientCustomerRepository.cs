@@ -1,44 +1,31 @@
 ﻿using MiniBank.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using MiniBank.Repository.Interfaces;
 
 namespace MiniBank.Repository
 {
     public class SqlClientCustomerRepository
     {
         private const string _connectionString = "Server=DESKTOP-SCSHELD\\SQLEXPRESS;Database=MiniBankSE31148;Trusted_Connection=true;TrustServerCertificate=true";
+        private readonly IRepository<Customer> _repository;
+
+        public SqlClientCustomerRepository()
+        {
+            _repository = new Repositroy<Customer>(_connectionString);
+        }
+
 
         public async Task<List<Customer>> GetCustomers()
         {
             string commandText = "spGetAllCustomers";
-            List<Customer> result = new();
+            var result = await _repository.GetAll(commandText, null, CommandType.StoredProcedure);
 
-            using (SqlConnection connection = new(_connectionString))
-            {
-                using (SqlCommand command = new(commandText, connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    await connection.OpenAsync();
-
-                    SqlDataReader reader = await command.ExecuteReaderAsync();
-
-                    while (await reader.ReadAsync())
-                    {
-                        Customer customer = new();
-                        customer.Id = reader.GetInt32(0);
-                        customer.Name = reader.GetString(1);
-                        customer.IdentityNumber = reader.GetString(2);
-                        customer.PhoneNumber = reader.GetString(3);
-                        customer.Email = reader.GetString(4);
-                        customer.Type = Enum.Parse<CustomerType>(reader.GetByte(5).ToString());
-
-                        result.Add(customer);
-                    }
-                }
-            }
-
-            return result;
+            return result.ToList();
         }
+
+
+
         public async Task<Customer> GetCustomer(int id)
         {
             string commandText = "spGetSingleCustomer";
