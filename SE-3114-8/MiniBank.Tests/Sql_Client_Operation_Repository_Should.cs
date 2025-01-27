@@ -29,8 +29,8 @@ namespace MiniBank.Tests
         public async Task Transfer_Amount()
         {
             const decimal transferAmount = 2;
-            const int sourceAccountId = 6;
-            const int destinationAccountId = 5;
+            const int sourceAccountId = 1;
+            const int destinationAccountId = 4;
 
             await _sqlClientOperationRepository.Transfer(sourceAccountId, destinationAccountId, transferAmount);
         }
